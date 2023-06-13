@@ -1,3 +1,5 @@
+package Model;
+
 public class CEO extends Funcionario {
     private String departamento;
     private double bonus;

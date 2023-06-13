@@ -1,4 +1,6 @@
-private class Funcionario extends Pessoa {
+package Model;
+
+public class Funcionario extends Pessoa {
     private String cargo;
     private double salario;
 

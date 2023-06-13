@@ -1,3 +1,5 @@
+package Model;
+
 public class Fornecedor extends Pessoa {
     private String cnpj;
 
