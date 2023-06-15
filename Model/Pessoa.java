@@ -1,16 +1,15 @@
 package Model;
 
-public class Pessoa {
+public abstract class Pessoa {
     private String nome;
     private int idade;
     private String endereco;
-
-    public Pessoa(String nome, int idade, String endereco) {
-        this.nome = nome;
-        this.idade = idade;
-        this.endereco = endereco;
-    }
-
+    
+        public Pessoa(String nome, int idade, String endereco) {
+            this.nome = nome;
+            this.idade = idade;
+            this.endereco = endereco;
+        }
     public String getNome() {
         return nome;
     }
@@ -34,4 +33,11 @@ public class Pessoa {
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
+
+    
+
+   
+
+
+
 }
