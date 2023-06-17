@@ -7,6 +7,11 @@ public class Funcionario extends Pessoa {
     private double salario;
     private ArrayList<Projeto> projetos;
 
+    public Funcionario(String nome, int idade, Endereco endereco, String cargo, String cpf) {
+        super(nome, idade, endereco,cpf);
+        this.cargo = cargo;
+    }
+
     public Funcionario(String nome, int idade, Endereco endereco, String cargo, double salario,String cpf) {
         super(nome, idade, endereco,cpf);
         this.cargo = cargo;
