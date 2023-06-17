@@ -1,14 +1,20 @@
 package TelaInicial;
-import Cadastro.cadastro;
+import OPTelaInicial.cadastroEmpresa;
+import OPTelaInicial.login;
 import java.util.Scanner;
 import java.util.InputMismatchException;
 public class TelaInicial {
     private int op;
+    private boolean sair;
 
+    public TelaInicial(){
+        sair = false;
+    }
     public void execute() {
         showOperations();
         controlOperation();
         operationSwitch();
+
 
     }
 
@@ -36,13 +42,25 @@ public class TelaInicial {
     public void operationSwitch(){
         switch(op){
             case  1:
-                cadastro cadastro = new cadastro();
+                cadastroEmpresa cadastro = new cadastroEmpresa();
                 cadastro.execute();
-                break;
+              break;
             case 2:
+                login login = new login();
+                login.execute();
                 break;
             case 3:
+                setSair(true);
                 break;
+
         }
+    }
+
+    public boolean getSair() {
+        return sair;
+    }
+
+    public void setSair(boolean sair) {
+        this.sair = sair;
     }
 }

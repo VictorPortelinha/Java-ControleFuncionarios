@@ -2,12 +2,12 @@ package Model;
 
 public class Endereco {
     private String rua;
-    private String numero;
+    private int numero;
     private String cidade;
     private String estado;
     private String cep;
 
-    public Endereco(String rua, String numero, String cidade, String estado, String cep) {
+    public Endereco(String rua, int numero, String cidade, String estado, String cep) {
         this.rua = rua;
         this.numero = numero;
         this.cidade = cidade;
@@ -23,11 +23,11 @@ public class Endereco {
         this.rua = rua;
     }
 
-    public String getNumero() {
+    public int getNumero() {
         return numero;
     }
 
-    public void setNumero(String numero) {
+    public void setNumero(int numero) {
         this.numero = numero;
     }
 

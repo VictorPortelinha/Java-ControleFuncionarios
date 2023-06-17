@@ -1,38 +1,34 @@
 package Model;
 
 public abstract class Pessoa {
-    private String nome;
-    private int idade;
-    private String endereco;
+    protected String nome;
+    protected int idade;
+    protected Endereco endereco;
+
+    protected String cpf;
     
-        public Pessoa(String nome, int idade, String endereco) {
+        public Pessoa(String nome, int idade, Endereco endereco,String cpf) {
             this.nome = nome;
             this.idade = idade;
             this.endereco = endereco;
+            this.cpf = cpf;
         }
-    public String getNome() {
-        return nome;
-    }
+    public abstract String getNome();
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+    public abstract void setNome(String nome);
 
-    public int getIdade() {
-        return idade;
-    }
+    public abstract int getIdade();
 
-    public void setIdade(int idade) {
-        this.idade = idade;
-    }
+    public abstract void setIdade(int idade);
 
-    public String getEndereco() {
-        return endereco;
-    }
+    public abstract Endereco getEndereco();
 
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
+    public abstract void setEndereco(Endereco endereco);
+
+    @Override
+    public abstract String toString();
+
+
 
     
 
