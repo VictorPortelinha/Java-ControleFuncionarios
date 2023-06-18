@@ -15,24 +15,40 @@ public class DB {
                 System.out.println(e);
             }
         }
-        public int selectMaxIdValue(String query) {
+        public ResultSet selectCEO() {
             ResultSet resultSet = null;
-            int id = -1;
             try {
+                String query = "SELECT * FROM TB_CEO";
                 Statement statement = connection.createStatement();
 
                 resultSet = statement.executeQuery(query);
-
-                while(resultSet.next()){
-                     id = resultSet.getInt("max_id");
-                }
                 
                 
             } catch (Exception e) {
                 System.out.println(e);
             }
-            return id;
+            return resultSet;
         }
+
+    public int selectMaxIdValue(String query) {
+        ResultSet resultSet = null;
+        int id = -1;
+        try {
+            Statement statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(query);
+
+            while(resultSet.next()){
+                id = resultSet.getInt("max_id");
+            }
+
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return id;
+    }
+        
         
         
     

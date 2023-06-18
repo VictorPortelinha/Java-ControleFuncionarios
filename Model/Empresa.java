@@ -46,6 +46,7 @@ public class Empresa {
     }
 
     public void setFuncionarios(Funcionario funcionario) {
+
         this.funcionarios.add(funcionario);
     }
 
