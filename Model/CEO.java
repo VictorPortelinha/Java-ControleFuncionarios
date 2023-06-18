@@ -5,10 +5,9 @@ public class CEO extends Funcionario {
 
 
     private boolean logado;
-    public CEO(String nome, int idade, Endereco endereco, String cargo,String cpf){
-        super(nome, idade, endereco, cargo,cpf);
+    public CEO(String nome, int idade, String cpf){
+        super(nome, idade, cpf);
         this.logado = false;
-
     }
 
     public boolean isLogado(){

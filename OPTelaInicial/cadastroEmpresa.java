@@ -83,7 +83,7 @@ public class cadastroEmpresa {
         banco.insertEmpresa(nomeEmpresa,cnpj,idEndereco);
         int idEmpresa = banco.selectMaxIdValue("SELECT MAX(id) AS max_id FROM tb_Empresa");
         banco.insertCEO(nome,idade,cpf,senha,idEmpresa);
-        
+        banco.closeConn();
         
     }
 }

@@ -3,8 +3,8 @@ package Model;
 public class Cliente extends Pessoa {
     private String email;
 
-    public Cliente(String nome, int idade, Endereco endereco, String email,String cpf) {
-        super(nome, idade, endereco,cpf);
+    public Cliente(String nome, int idade, String email,String cpf) {
+        super(nome, idade,cpf);
         this.email = email;
     }
 
@@ -36,17 +36,11 @@ public class Cliente extends Pessoa {
     }
 
     @Override
-    public Endereco getEndereco() {
-        return endereco;
+    public String toString(){
+        return "Nome: " + nome + " || Email: " + email;
     }
 
-    @Override
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
-    }
 
-    @Override
-    public String toString() {
-        return null;
-    }
+
+
 }

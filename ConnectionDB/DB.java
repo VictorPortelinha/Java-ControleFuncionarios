@@ -2,20 +2,68 @@ package ConnectionDB;
 import java.sql.*;
 
 public class DB {
-        String url = "jdbc:mysql://localhost:3306/controlefuncionarios";
-        String username = "root";
-        String password = "123456";
-        java.sql.Connection connection;
-        public DB(){
-            try{
-                Class.forName("com.mysql.cj.jdbc.Driver");
+    String url = "jdbc:mysql://localhost:3306/controlefuncionarios";
+    String username = "root";
+    String password = "123456";
+    java.sql.Connection connection;
+    public DB(){
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
 
-                 connection = DriverManager.getConnection(url, username, password);
-            }catch (Exception e) {
-                System.out.println(e);
-            }
+            connection = DriverManager.getConnection(url, username, password);
+        }catch (Exception e) {
+            System.out.println(e);
         }
-        public ResultSet selectCEO() {
+    }
+    public void closeConn() throws SQLException{
+        connection.close();
+    }
+    public ResultSet selectEmpresaByID(int idEmpresa) {
+        ResultSet resultSet = null;
+        try {
+            String query = "SELECT * FROM TB_Empresa WHERE id=" + idEmpresa;
+            System.out.println(query);
+            Statement statement = connection.createStatement();
+
+            resultSet = statement.executeQuery(query);
+
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return resultSet;
+    }
+    public ResultSet selectEnderecoByID(int idEndereco) {
+        ResultSet resultSet = null;
+        try {
+            String query = "SELECT * FROM TB_Enderecos WHERE id = ?";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, idEndereco);
+            resultSet = statement.executeQuery();
+
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return resultSet;
+    }
+    public ResultSet selectCEOByID(int idCEO) {
+        ResultSet resultSet = null;
+        try {
+            String query = "SELECT * FROM TB_CEO WHERE id = ?";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, idCEO);
+            resultSet = statement.executeQuery();
+
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return resultSet;
+    }
+
+
+    public ResultSet selectCEO() {
             ResultSet resultSet = null;
             try {
                 String query = "SELECT * FROM TB_CEO";
@@ -29,6 +77,7 @@ public class DB {
             }
             return resultSet;
         }
+
 
     public int selectMaxIdValue(String query) {
         ResultSet resultSet = null;
@@ -120,6 +169,32 @@ public class DB {
             statement.setString(3, cpf);
             statement.setString(4,senha);
             statement.setInt(5,id_empresa);
+
+
+            int result = statement.executeUpdate();
+            if(result == 1){
+                System.out.println("Dados inseridos com sucesso!");
+            }
+
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    public void insertFuncionario(String nome,int idade,String cpf, int tipoFuncionario,int id_empresa, String cargo, double salario, double bonus){
+        try {
+
+            String query = "INSERT INTO TB_Funcionario(nome,idade,id_empresa,cpf,id_empresa,tipoFuncionario,cargo,salario,bonus) VALUES (?,?,?,?,?,?)";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, nome);
+            statement.setInt(2, idade);
+            statement.setInt(3, id_empresa);
+            statement.setString(4,cpf);
+            statement.setInt(5,id_empresa);
+            statement.setInt(6,tipoFuncionario);
+            statement.setString(7,cargo);
+            statement.setDouble(8,salario);
+            statement.setDouble(9,bonus);
 
 
             int result = statement.executeUpdate();

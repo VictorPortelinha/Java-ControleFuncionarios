@@ -15,6 +15,12 @@ public class Endereco {
         this.cep = cep;
     }
 
+    public String toString(){
+        return "Rua : " + rua + "\n Numero: " + numero
+        + "\nCidade: " + cidade + "\nEstado: " + estado +
+        "\nCEP: " + cep;
+    }
+
     public String getRua() {
         return rua;
     }

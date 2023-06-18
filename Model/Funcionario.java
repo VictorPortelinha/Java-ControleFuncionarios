@@ -3,19 +3,23 @@ package Model;
 import java.util.ArrayList;
 
 public class Funcionario extends Pessoa {
-    private String cargo;
-    private double salario;
-    private ArrayList<Projeto> projetos;
+    protected String cargo;
+    protected double salario;
+    protected double bonus;
 
-    public Funcionario(String nome, int idade, Endereco endereco, String cargo, String cpf) {
-        super(nome, idade, endereco,cpf);
-        this.cargo = cargo;
+    public Funcionario(String nome, int idade, String cpf) {
+        super(nome, idade, cpf);
     }
 
-    public Funcionario(String nome, int idade, Endereco endereco, String cargo, double salario,String cpf) {
-        super(nome, idade, endereco,cpf);
+    public Funcionario(String nome, int idade, String cpf, String cargo, double salario,double bonus) {
+        super(nome, idade, cpf);
         this.cargo = cargo;
         this.salario = salario;
+        this.bonus = bonus;
+    }
+
+    public double calcSalario(){
+        return salario;
     }
 
     public String getCargo() {
@@ -54,15 +58,6 @@ public class Funcionario extends Pessoa {
         this.idade = idade;
     }
 
-    @Override
-    public Endereco getEndereco() {
-        return endereco;
-    }
-
-    @Override
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
-    }
 
     @Override
     public String toString() {

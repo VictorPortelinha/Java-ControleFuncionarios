@@ -1,6 +1,7 @@
-// Package not sdetected, please report project structure on CodeTogether's GitHub Issues
+
 package OPTelaInicial;
 import ConnectionDB.DB;
+import Model.Empresa;
 
 import java.util.Scanner;
 import java.util.InputMismatchException;
@@ -25,7 +26,7 @@ public class login {
                 break;
             }
             catch (InputMismatchException e) {
-                System.out.println("Esse input n�o � valido, tente novamente");
+                System.out.println("Esse input não é valido, tente novamente");
                 scanner = new Scanner(System.in);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
@@ -34,17 +35,31 @@ public class login {
     }
     private boolean finalizar_login () throws SQLException {
         DB banco = new DB();
-        ResultSet resultSet = banco.selectCEO();
-        while(resultSet.next()){
-            String nome = resultSet.getString("nome");
-            String senha = resultSet.getString("senha");
-            int idade = resultSet.getInt("idade");
-            String cpf = resultSet.getString("cpf");
-            int idEmpresa = resultSet.getInt("id_empresa");
-            if (this.cpf.equals(cpf) && this.senha.equals(senha)){
+        ResultSet resultSetCEO = banco.selectCEO();
+        
+        if(resultSetCEO.next()){
+            while(resultSetCEO.next()){
+                int idCEO = resultSetCEO.getInt("id");
+                String senha = resultSetCEO.getString("senha");
+                String cpfCEO = resultSetCEO.getString("cpf");
+                int idEmpresa = resultSetCEO.getInt("id_empresa");
 
+                if (this.cpf.equals(cpfCEO)){
+                    if(this.senha.equals(senha)){
+                        telaAdmin telaAdmin = new telaAdmin(idEmpresa, idCEO);
+                        telaAdmin.execute();
+                    }else{
+                        System.out.println("Senha incorreta, tente novamente");
+                    }
+                }else{
+                    System.out.println("Usuário  " + cpfCEO + " não está cadastrado no sistema");
+                }
             }
+        }else{
+            System.out.println("Não há usuarios cadastrados");
         }
 
+
+        return false;
     }
 }
