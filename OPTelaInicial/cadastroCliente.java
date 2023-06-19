@@ -1,6 +1,5 @@
 package OPTelaInicial;
-import Model.Endereco;
-import Model.Empresa;
+import Model.*;
 import ConnectionDB.DB;
 import com.mysql.cj.protocol.Resultset;
 
@@ -13,10 +12,10 @@ public class cadastroCliente {
     private String nome;
     private int idade;
     private String cpf;
-    private String email;
 
 
-    public void execute(){
+
+    public void execute(Empresa empresa){
         while(true){
             Scanner scanner = new Scanner(System.in);
             try{
@@ -27,12 +26,27 @@ public class cadastroCliente {
                 scanner.nextLine();
                 System.out.println("Informe o CPF do cliente:");
                 cpf = scanner.nextLine();
-                System.out.println("Informe o email do cliente:");
-                email = scanner.nextLine();
+                finalizarCadastro(empresa);
                 break;
+
             }catch(InputMismatchException e){
                 System.out.println("Um erro ocorreu, tente novamente");
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
             }
         }
+    }
+
+    public void finalizarCadastro (Empresa empresa) throws SQLException{
+        DB banco = new DB();
+
+        try{
+            banco.insertCliente(nome,idade,cpf,empresa.getId());
+
+            System.out.println("O novo cliente foi cadastrado com sucesso");
+        }catch(Exception e){
+            System.out.println(e);
+        }
+
     }
 }

@@ -2,7 +2,6 @@
 package OPTelaInicial;
 import ConnectionDB.DB;
 import Model.Empresa;
-
 import java.util.Scanner;
 import java.util.InputMismatchException;
 import java.sql.*;
@@ -36,9 +35,10 @@ public class login {
     private boolean finalizar_login () throws SQLException {
         DB banco = new DB();
         ResultSet resultSetCEO = banco.selectCEO();
-        
-        if(resultSetCEO.next()){
+
+
             while(resultSetCEO.next()){
+                System.out.println("Olá mundo");
                 int idCEO = resultSetCEO.getInt("id");
                 String senha = resultSetCEO.getString("senha");
                 String cpfCEO = resultSetCEO.getString("cpf");
@@ -55,9 +55,6 @@ public class login {
                     System.out.println("Usuário  " + cpfCEO + " não está cadastrado no sistema");
                 }
             }
-        }else{
-            System.out.println("Não há usuarios cadastrados");
-        }
 
 
         return false;

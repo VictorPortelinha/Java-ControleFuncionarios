@@ -1,19 +1,11 @@
 package Model;
 
 public class Cliente extends Pessoa {
-    private String email;
 
-    public Cliente(String nome, int idade, String email,String cpf) {
+
+    public Cliente(String nome, int idade, String cpf) {
         super(nome, idade,cpf);
-        this.email = email;
-    }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
     @Override
     public String getNome() {
@@ -37,7 +29,7 @@ public class Cliente extends Pessoa {
 
     @Override
     public String toString(){
-        return "Nome: " + nome + " || Email: " + email;
+        return "Nome: " + nome;
     }
 
 

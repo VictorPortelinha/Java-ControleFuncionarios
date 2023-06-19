@@ -1,11 +1,11 @@
 package OPTelaInicial;
-import Model.Endereco;
-import Model.Empresa;
+import Model.*;
 import ConnectionDB.DB;
 import com.mysql.cj.protocol.Resultset;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -45,7 +45,6 @@ public class cadastroFuncionario {
                 System.out.println("3. Senior");
                 tipoFuncionario = scanner.nextInt();
                 finalizarCadastro(empresa);
-
                 break;
             }catch(InputMismatchException e){
                 System.out.println("Um erro ocorreu, tente novamente");
@@ -56,8 +55,23 @@ public class cadastroFuncionario {
     }
     public void finalizarCadastro (Empresa empresa) throws SQLException{
         DB banco = new DB();
+
         try{
             banco.insertFuncionario(nome,idade,cpf,tipoFuncionario,empresa.getId(),cargo,salario,bonus);
+            if(tipoFuncionario == 0){
+                Funcionario funcionario = new Estagiario(nome,idade,cpf,cargo,salario,bonus);
+                empresa.setFuncionarios(funcionario);
+            }else if(tipoFuncionario==1){
+                Funcionario funcionario = new Junior(nome,idade,cpf,cargo,salario,bonus);
+                empresa.setFuncionarios(funcionario);
+            }else if(tipoFuncionario==2){
+                Funcionario funcionario = new Pleno(nome,idade,cpf,cargo,salario,bonus);
+                empresa.setFuncionarios(funcionario);
+            }else if(tipoFuncionario==3){
+                Funcionario funcionario = new Senior(nome,idade,cpf,cargo,salario,bonus);
+                empresa.setFuncionarios(funcionario);
+            }
+            System.out.println("O novo funcionario foi cadastrado com sucesso");
         }catch(Exception e){
             System.out.println(e);
         }

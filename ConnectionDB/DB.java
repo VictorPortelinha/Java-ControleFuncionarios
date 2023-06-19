@@ -184,17 +184,16 @@ public class DB {
     public void insertFuncionario(String nome,int idade,String cpf, int tipoFuncionario,int id_empresa, String cargo, double salario, double bonus){
         try {
 
-            String query = "INSERT INTO TB_Funcionario(nome,idade,id_empresa,cpf,id_empresa,tipoFuncionario,cargo,salario,bonus) VALUES (?,?,?,?,?,?)";
+            String query = "INSERT INTO TB_Funcionario(nome,idade,id_empresa,cpf,tipoFuncionario,cargo,salario,bonus) VALUES (?,?,?,?,?,?,?,?)";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, nome);
             statement.setInt(2, idade);
             statement.setInt(3, id_empresa);
             statement.setString(4,cpf);
-            statement.setInt(5,id_empresa);
-            statement.setInt(6,tipoFuncionario);
-            statement.setString(7,cargo);
-            statement.setDouble(8,salario);
-            statement.setDouble(9,bonus);
+            statement.setInt(5,tipoFuncionario);
+            statement.setString(6,cargo);
+            statement.setDouble(7,salario);
+            statement.setDouble(8,bonus);
 
 
             int result = statement.executeUpdate();
@@ -207,4 +206,60 @@ public class DB {
             System.out.println(e);
         }
     }
+    public ResultSet selectFuncionarios(int idEmpresa) {
+
+            ResultSet resultSet = null;
+            try {
+                String query = "SELECT * FROM TB_Funcionario WHERE id_empresa = ?";
+                PreparedStatement statement = connection.prepareStatement(query);
+                statement.setInt(1, idEmpresa);
+                resultSet = statement.executeQuery();
+
+
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+            return resultSet;
+
+    }
+    public ResultSet selectClienteByID(int idEmpresa) {
+
+        ResultSet resultSet = null;
+        try {
+            String query = "SELECT * FROM TB_Cliente WHERE id_empresa = ?";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, idEmpresa);
+            resultSet = statement.executeQuery();
+
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return resultSet;
+
+    }
+
+    public void insertCliente(String nome,int idade,String cpf,int idEmpresa){
+        try {
+
+            String query = "INSERT INTO TB_Cliente(nome,idade,cpf,id_empresa) VALUES (?,?,?,?)";
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, nome);
+            statement.setInt(2, idade);
+            statement.setString(3, cpf);
+            statement.setInt(4,idEmpresa);
+
+
+
+            int result = statement.executeUpdate();
+            if(result == 1){
+                System.out.println("Dados inseridos com sucesso!");
+            }
+
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
 }

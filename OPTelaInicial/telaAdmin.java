@@ -15,7 +15,7 @@ public class telaAdmin {
 
     CEO ceoLogado;
     private int idCEO;
-    private boolean sair;
+
     private int op;
 
     public telaAdmin(int idEmpresa, int idCEO) throws SQLException {
@@ -55,29 +55,27 @@ public class telaAdmin {
         empresaLogada = new Empresa(nome,enderecoEmpresa,cnpj,idEmpresa);
         ceoLogado.logar();
 
-        sair = false;
+
     }
 
-
-
     public void execute() {
-        if(ceoLogado.isLogado()){
+        while(ceoLogado.isLogado()){
+            System.out.println("OI");
             showOperations();
             controlOperation();
             operationSwitch();
+            }
         }
-
-
-
-    }
-
     public void showOperations() {
+
         System.out.println("1. Registrar funcionário");
         System.out.println("2. Gerar planilha");
         System.out.println("3. Cadastrar Clientes");
         System.out.println("4. Visualizar Clientes");
         System.out.println("5. Visualizar dados da Empresa");
         System.out.println("6. Deslogar");
+
+
     }
 
     public void controlOperation() {
@@ -98,32 +96,29 @@ public class telaAdmin {
     public void operationSwitch(){
         switch(op) {
             case 1:
-            cadastroFuncionario cadastroFuncionario = new cadastroFuncionario();
-            cadastroFuncionario.execute(empresaLogada);
-                break;
+                cadastroFuncionario cadastroFuncionario = new cadastroFuncionario();
+                cadastroFuncionario.execute(empresaLogada);
+
             case 2:
 
                 break;
             case 3:
+                cadastroCliente cadastroCliente = new cadastroCliente();
+                cadastroCliente.execute(empresaLogada);
 
-                break;
             case 4:
-
-                break;
+                empresaLogada.mostrarClientes();
+                execute();
             case 5:
-                break;
+                empresaLogada.showDados();
+
+
             case 6:
-                setSair(true);
+                ceoLogado.sair();
                 break;
 
         }
 
 }
-    public boolean getSair() {
-        return sair;
-    }
 
-    public void setSair(boolean sair) {
-        this.sair = sair;
-    }
 }
