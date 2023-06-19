@@ -60,7 +60,6 @@ public class telaAdmin {
 
     public void execute() {
         while(ceoLogado.isLogado()){
-            System.out.println("OI");
             showOperations();
             controlOperation();
             operationSwitch();
@@ -100,8 +99,9 @@ public class telaAdmin {
                 cadastroFuncionario.execute(empresaLogada);
 
             case 2:
-
-                break;
+                Planilha planilha = new Planilha();
+                planilha.gerarPlanilha(empresaLogada);
+                execute();
             case 3:
                 cadastroCliente cadastroCliente = new cadastroCliente();
                 cadastroCliente.execute(empresaLogada);
@@ -111,6 +111,7 @@ public class telaAdmin {
                 execute();
             case 5:
                 empresaLogada.showDados();
+                execute();
 
 
             case 6:

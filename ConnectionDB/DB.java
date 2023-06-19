@@ -4,7 +4,7 @@ import java.sql.*;
 public class DB {
     String url = "jdbc:mysql://localhost:3306/controlefuncionarios";
     String username = "root";
-    String password = "123456";
+    String password = "admin";
     java.sql.Connection connection;
     public DB(){
         try{

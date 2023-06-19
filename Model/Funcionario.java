@@ -5,6 +5,13 @@ import java.util.ArrayList;
 public class Funcionario extends Pessoa {
     protected String cargo;
     protected double salario;
+
+    public double getBonus() {
+        return bonus;
+    }
+    public String getTipo() {
+        return this.getClass().getSimpleName();
+    }
     protected double bonus;
 
     public Funcionario(String nome, int idade, String cpf) {

@@ -11,6 +11,7 @@ public class Empresa {
     private String cnpj;
     private final ArrayList<Funcionario> funcionarios;
     private final ArrayList<Cliente> clientes;
+
     
     public Empresa(String nome, Endereco endereco, String cnpj,int id) throws SQLException {
         this.id = id;

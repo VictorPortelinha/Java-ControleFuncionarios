@@ -38,7 +38,6 @@ public class login {
 
 
             while(resultSetCEO.next()){
-                System.out.println("Olá mundo");
                 int idCEO = resultSetCEO.getInt("id");
                 String senha = resultSetCEO.getString("senha");
                 String cpfCEO = resultSetCEO.getString("cpf");

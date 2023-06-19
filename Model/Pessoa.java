@@ -5,6 +5,10 @@ public abstract class Pessoa {
     protected int idade;
 
 
+    public String getCpf() {
+        return cpf;
+    }
+
     protected String cpf;
     
         public Pessoa(String nome, int idade, String cpf) {

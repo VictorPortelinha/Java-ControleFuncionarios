@@ -37,6 +37,8 @@ public class cadastroFuncionario {
                 cargo = scanner.nextLine();
                 System.out.println("Informe o salário do funcionário:");
                 salario = scanner.nextDouble();
+                System.out.println("Informe o bonus do funcionário:");
+                bonus = scanner.nextDouble();
                 scanner.nextLine();
                 System.out.println("Informe o tipo de funcionário: ");
                 System.out.println("0. Estagiário");
